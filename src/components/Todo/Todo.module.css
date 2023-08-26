@@ -1,0 +1,10 @@
+.todo {
+  list-style: none;
+}
+
+.todo > input {
+  width: 1.1rem;
+  height: 1.1rem;
+  appearance: none;
+  border: 1px solid #999;
+}

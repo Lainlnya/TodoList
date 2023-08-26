@@ -1,5 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import AddTodo from '../AddTodo/AddTodo';
+import Todo from '../Todo/Todo';
+
+interface TodoItem {
+  id: string;
+  text: string;
+  status: string;
+}
 
 export default function TodoList() {
-  return <div></div>;
+  const [todos, setTodos] = useState<TodoItem[]>([]);
+
+  useEffect(() => setTodos(todos), [todos]);
+
+  const handleAdd = (todo: TodoItem) => {
+    setTodos([...todos, todo]);
+  };
+
+  console.log(todos);
+
+  return (
+    <>
+      <main>
+        <AddTodo onAdd={handleAdd} />
+        <section>
+          <Todo />
+        </section>
+      </main>
+    </>
+  );
 }
