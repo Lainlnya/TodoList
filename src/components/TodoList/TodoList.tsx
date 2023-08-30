@@ -8,7 +8,11 @@ interface TodoItem {
   status: string;
 }
 
-export default function TodoList() {
+interface filterProps {
+  filter: string;
+}
+
+export default function TodoList({ filter }: filterProps) {
   const [todos, setTodos] = useState<TodoItem[]>([]);
 
   useEffect(() => setTodos(todos), [todos]);
@@ -21,18 +25,27 @@ export default function TodoList() {
     setTodos(todos.filter((todo) => todo.id !== deleted.id));
   };
 
-  console.log(todos);
+  const handleUpdate = (updated: TodoItem) => {
+    setTodos(todos.map((todo) => (todo.id === updated.id ? updated : todo)));
+  };
+  const filtered = getFilteredItems(todos, filter);
 
   return (
     <>
       <main>
         <AddTodo onAdd={handleAdd} />
         <section>
-          {todos.map((item) => (
-            <Todo todo={item} onDelete={handleDelete} />
+          {filtered.map((item) => (
+            <Todo todo={item} onDelete={handleDelete} onUpdate={handleUpdate} />
           ))}
         </section>
       </main>
     </>
   );
 }
+
+const getFilteredItems = (todos: TodoItem[], filter: string) => {
+  if (filter === 'all') return todos;
+
+  return todos.filter((todo) => todo.status === filter);
+};
