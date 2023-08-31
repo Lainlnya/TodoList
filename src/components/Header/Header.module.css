@@ -1,0 +1,25 @@
+.h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+  line-height: 100px;
+}
+
+.headerUl {
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.status {
+  text-transform: uppercase;
+  background-color: var(--color-accent);
+  padding: 0.2rem;
+  margin: 0 0.2rem;
+  font-weight: bold;
+}
+
+.status:hover {
+  cursor: pointer;
+}

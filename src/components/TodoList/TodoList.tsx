@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AddTodo from '../AddTodo/AddTodo';
 import Todo from '../Todo/Todo';
+import styles from './TodoList.module.css';
 
 interface TodoItem {
   id: string;
@@ -30,15 +31,21 @@ export default function TodoList({ filter }: filterProps) {
   const handleUpdate = (updated: TodoItem) => {
     setTodos(todos.map((todo) => (todo.id === updated.id ? updated : todo)));
   };
+
   const filtered = getFilteredItems(todos, filter);
 
   return (
     <>
       <main>
         <AddTodo onAdd={handleAdd} />
-        <section>
+        <section className={styles.todoList}>
           {filtered.map((item) => (
-            <Todo todo={item} onDelete={handleDelete} onUpdate={handleUpdate} />
+            <Todo
+              key={item.id}
+              todo={item}
+              onDelete={handleDelete}
+              onUpdate={handleUpdate}
+            />
           ))}
         </section>
       </main>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import styles from './AddTodo.module.css';
 
 interface TodoItem {
   id: string;
@@ -25,14 +26,15 @@ export default function AddTodo({ onAdd }: AddTodoProps) {
     setText(e.target.value);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.inputForm} onSubmit={handleSubmit}>
       <input
+        className={styles.addTodo}
         type="text"
         placeholder="해야할 일을 입력하세요"
         onChange={handleChange}
         value={text}
       />
-      <button>추가</button>
+      <button className={styles.addBtn}>추가</button>
     </form>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Header.module.css';
 
 interface FilterProps {
   filters: string[];
@@ -13,13 +14,19 @@ export default function Header({
 }: FilterProps) {
   return (
     <header>
-      <h1>Todo List</h1>
-      {filters.map((filt, i) => (
-        <li key={i}>
-          <button onChange={() => onFilterChange(filt)}>{filt}</button>
-        </li>
-      ))}
-      <ul></ul>
+      <h1 className={styles.h1}>Todo List</h1>
+      <ul className={styles.headerUl}>
+        {filters.map((filt, i) => (
+          <li className={styles.status} key={i}>
+            <button
+              className={styles.status}
+              onClick={() => onFilterChange(filt)}
+            >
+              {filt}
+            </button>
+          </li>
+        ))}
+      </ul>
     </header>
   );
 }

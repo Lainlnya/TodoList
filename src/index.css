@@ -1,7 +1,21 @@
+:root {
+  --color-bg: #ebebeb;
+  --color-text: #262525;
+  --color-accent: #fbc0bc;
+}
+
+html.dark {
+  --color-bg: #3d3c41;
+  --color-text: #fdfdfd;
+  --color-accent: #fe8e6b;
+}
+
 * {
   margin: 0;
   border: 0;
   list-style: none;
+  font-family: 'Nanum Myeongjo', serif;
+  color: var(--color-text);
 }
 
 body {
@@ -11,6 +25,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
 }
 
 code {

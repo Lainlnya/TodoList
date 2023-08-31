@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
 import styles from './Todo.module.css';
 
 interface TodoProps {
@@ -16,13 +15,16 @@ interface TodoItem {
 
 export default function Todo({ todo, onDelete, onUpdate }: TodoProps) {
   const { id, text, status } = todo;
-  const handleDelete = () => {
-    onDelete(todo);
-  };
 
+  // 업데이트 과정
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const status = e.target.checked ? 'completed' : 'active';
     onUpdate({ ...todo, status });
+  };
+
+  // 삭제 과정
+  const handleDelete = () => {
+    onDelete(todo);
   };
 
   return (
@@ -30,13 +32,16 @@ export default function Todo({ todo, onDelete, onUpdate }: TodoProps) {
       <input
         type="checkbox"
         id={id}
+        className={styles.checkbox}
         checked={status === 'completed'}
         onChange={handleChange}
       />
-      <label htmlFor={id}>{text}</label>
+      <label className={styles.checkText} htmlFor={id}>
+        {text}
+      </label>
       <span>
-        <button onClick={handleDelete}>
-          <FaTrashAlt />
+        <button className={styles.deleteBtn} onClick={handleDelete}>
+          삭제하기
         </button>
       </span>
     </li>
