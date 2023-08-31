@@ -13,9 +13,11 @@ interface filterProps {
 }
 
 export default function TodoList({ filter }: filterProps) {
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [todos, setTodos] = useState<TodoItem[]>(() => readLocalTodos());
 
-  useEffect(() => setTodos(todos), [todos]);
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const handleAdd = (todo: TodoItem) => {
     setTodos([...todos, todo]);
@@ -48,4 +50,9 @@ const getFilteredItems = (todos: TodoItem[], filter: string) => {
   if (filter === 'all') return todos;
 
   return todos.filter((todo) => todo.status === filter);
+};
+
+const readLocalTodos = () => {
+  let todos = localStorage.getItem('todos');
+  return todos ? JSON.parse(todos) : [];
 };
