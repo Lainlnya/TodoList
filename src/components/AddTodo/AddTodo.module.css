@@ -10,10 +10,12 @@
   font-size: 15px;
   padding: 1rem;
   flex-grow: 4;
+  color: #262525;
 }
 
 .addTodo:focus {
   outline: none;
+  color: #262525;
 }
 
 .addBtn {
