@@ -2,12 +2,14 @@
   --color-bg: #ebebeb;
   --color-text: #262525;
   --color-accent: #fbc0bc;
+  --color-light: #5c5c5a;
 }
 
 html.dark {
   --color-bg: #3d3c41;
   --color-text: #fdfdfd;
   --color-accent: #fe8e6b;
+  --color-light: #f7ff88;
 }
 
 * {

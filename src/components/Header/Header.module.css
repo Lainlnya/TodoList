@@ -12,7 +12,8 @@
   margin-bottom: 1rem;
 }
 
-.status {
+.status,
+.toggleBtn {
   text-transform: uppercase;
   background-color: var(--color-accent);
   padding: 0.2rem;
@@ -22,4 +23,9 @@
 
 .status:hover {
   cursor: pointer;
+}
+
+.toggleBtn {
+  color: var(--color-bg);
+  background-color: var(--color-light);
 }

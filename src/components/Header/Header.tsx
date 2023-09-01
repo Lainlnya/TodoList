@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Header.module.css';
+import { useDarkMode } from '../../context/DarkModeContext';
 
 interface FilterProps {
   filters: string[];
@@ -12,6 +13,10 @@ export default function Header({
   filter,
   onFilterChange,
 }: FilterProps) {
+  const darkContext = useDarkMode();
+  if (!darkContext) throw new Error('Expected valid Dark Mode Context');
+  const { darkMode, toggleDarkMode } = darkContext;
+
   return (
     <header>
       <h1 className={styles.h1}>Todo List</h1>
@@ -26,6 +31,11 @@ export default function Header({
             </button>
           </li>
         ))}
+        <li className={styles.toggleBtn}>
+          <button className={styles.toggleBtn} onClick={() => toggleDarkMode()}>
+            {darkMode ? 'DARK' : 'LIGHT'}
+          </button>
+        </li>
       </ul>
     </header>
   );
